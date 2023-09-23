@@ -1,2 +1,4 @@
 .venv
 .env
+app/handlers/__pycache__
+app/settings/__pycache__
