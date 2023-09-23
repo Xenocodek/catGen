@@ -11,4 +11,7 @@ router = Router()
 
 @router.message(Command(COMMANDS['START']))
 async def cmd_start(message: Message):
+    """
+    Handle the /start command.
+    """
     await message.answer('Привет!')

@@ -1,11 +1,12 @@
 import asyncio
 import logging
 
-from aiogram import Bot, Dispatcher
-from app.handlers.handlers import router
-from app.settings.config import Config
+from aiogram import Dispatcher
 
-TOKEN = Config.BOT_TOKEN
+from app.handlers.events import start_bot, stop_bot
+from app.handlers.handlers import router
+from app.settings.config import bot
+
 
 async def start():
     """
@@ -23,11 +24,13 @@ async def start():
             ]
     )
 
-    # Create a bot instance
-    bot = Bot(TOKEN, parse_mode='HTML')
-
     # Initialize a dispatcher
     dp = Dispatcher()
+
+    # Register the function start_bot to be called during startup
+    dp.startup.register(start_bot)
+    # Register the function stop_bot to be called during shutdown
+    dp.shutdown.register(stop_bot)
 
     # Include the router
     dp.include_router(router)
@@ -38,6 +41,7 @@ async def start():
     finally:
         # Close the bot session
         await bot.session.close()
+        
 
 if __name__ == '__main__':
     try:
