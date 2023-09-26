@@ -1,2 +1,0 @@
-GREETINGS = "Привет, "
-EXCLAMATION_POINT = "!"

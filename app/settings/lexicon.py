@@ -14,3 +14,8 @@ KEYBOARD = {
 COMMANDS = {
     'HELP': "help",
 }
+
+MESSAGES = {
+    'GREETINGS': "Привет, ",
+    'EXCLAMATION_POINT': "!"
+}

@@ -5,7 +5,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.utils.markdown import hbold
 
-from app.settings.messages import GREETINGS, EXCLAMATION_POINT
+from app.settings.lexicon import *
 
 router = Router()
 
@@ -14,4 +14,4 @@ async def cmd_start(message: Message):
     """
     Handle the /start command.
     """
-    await message.answer(f"{GREETINGS}{hbold(message.from_user.first_name)}{EXCLAMATION_POINT}")
+    await message.answer(f"{MESSAGES['GREETINGS']}{hbold(message.from_user.first_name)}{MESSAGES['EXCLAMATION_POINT']}")
