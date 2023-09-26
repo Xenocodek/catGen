@@ -1,14 +1,25 @@
 import os
+import logging
 from dataclasses import dataclass
 
-from aiogram import Bot
 from dotenv import load_dotenv
 
 load_dotenv()
 
 @dataclass
-class Config:
-    BOT_TOKEN: str = os.getenv("API_TOKEN")
-    ADMIN_ID: int = os.getenv("ADMIN_ID")
+class BotConfig:
+    """Bot configuration."""
 
-bot = Bot(token=Config.BOT_TOKEN, parse_mode='HTML')
+    token: str = os.getenv("API_TOKEN")
+    admin_id: int = os.getenv("ADMIN_ID")
+
+
+@dataclass
+class Configuration:
+    """All in one configuration's class."""
+
+    logging_level = int(os.getenv('LOGGING_LEVEL', logging.INFO))
+
+    bot = BotConfig()
+
+conf = Configuration()
