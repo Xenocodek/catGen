@@ -3,15 +3,27 @@ from aiogram.types import Message, CallbackQuery
 from aiogram.filters import Command, CommandStart
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
-from aiogram.utils.markdown import hbold
 
-from app.settings.lexicon import *
+from app.settings.lexicon import COMMANDS
+from .events import *
 
 router = Router()
 
+
 @router.message(CommandStart())
 async def cmd_start(message: Message):
-    """
-    Handle the /start command.
-    """
-    await message.answer(f"{MESSAGES['GREETINGS']}{hbold(message.from_user.first_name)}{MESSAGES['EXCLAMATION_POINT']}")
+    """Handle the /start command."""
+    await message.answer(greetings(message))
+
+
+@router.message(Command(COMMANDS['MYID']))
+async def cmd_my_id_name(message: Message):
+    """A function that handles the /my_id_name command."""
+    await message.answer(my_id_name(message))
+    #await message.answer_animation('https://media.giphy.com/media/hXvyi0RbHaLBLdCdL6/giphy.gif')
+
+@router.message()
+async def cmd_unclear(message: Message):
+    """A function that handles unclear commands."""
+
+    await message.answer(f"{MESSAGES['UNCLEAR']}")

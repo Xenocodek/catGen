@@ -4,7 +4,6 @@ import logging
 from aiogram import Bot
 from aiogram import Dispatcher
 
-#from app.handlers.events import start_bot, stop_bot
 from app.handlers.handlers import router
 from app.settings.config import conf
 
@@ -30,11 +29,6 @@ async def start():
 
     # Initialize a dispatcher
     dp = Dispatcher()
-
-    # Register the function start_bot to be called during startup
-    #dp.startup.register(start_bot)
-    # Register the function stop_bot to be called during shutdown
-    #dp.shutdown.register(stop_bot)
 
     # Include the router
     dp.include_router(router)
