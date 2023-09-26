@@ -12,6 +12,5 @@ KEYBOARD = {
 
 #Names of commands
 COMMANDS = {
-    'START': "start",
     'HELP': "help",
 }
