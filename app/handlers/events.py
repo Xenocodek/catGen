@@ -1,6 +1,6 @@
 from aiogram.utils.markdown import hbold
 
-from app.settings.lexicon import *
+from app.settings.lexicon import MESSAGES
 from aiogram.types import Message
 
 def get_first_name(message: Message):

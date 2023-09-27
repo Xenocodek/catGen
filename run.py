@@ -1,7 +1,6 @@
 import asyncio
 import logging
 
-from aiogram import Bot
 from aiogram import Dispatcher
 
 from app.handlers.handlers import router
@@ -25,7 +24,7 @@ async def start():
     )
 
     # Initialize a bot
-    bot = Bot(token=conf.bot.token, parse_mode='HTML')
+    bot = conf.bot
 
     # Initialize a dispatcher
     dp = Dispatcher()

@@ -13,12 +13,14 @@ router = Router()
 @router.message(CommandStart())
 async def cmd_start(message: Message):
     """Handle the /start command."""
+
     await message.answer(greetings(message))
 
 
 @router.message(Command(COMMANDS['MYID']))
 async def cmd_my_id_name(message: Message):
     """A function that handles the /my_id_name command."""
+    
     await message.answer(my_id_name(message))
     #await message.answer_animation('https://media.giphy.com/media/hXvyi0RbHaLBLdCdL6/giphy.gif')
 

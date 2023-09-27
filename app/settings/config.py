@@ -1,5 +1,6 @@
 import os
 import logging
+from aiogram import Bot
 from dataclasses import dataclass
 
 from dotenv import load_dotenv
@@ -20,6 +21,8 @@ class Configuration:
 
     logging_level = int(os.getenv('LOGGING_LEVEL', logging.INFO))
 
-    bot = BotConfig()
+    botconfig = BotConfig()
+
+    bot = Bot(token=botconfig.token, parse_mode='HTML')
 
 conf = Configuration()
