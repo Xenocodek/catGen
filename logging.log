@@ -1,0 +1,97 @@
+2023-09-29 00:44:57 - aiogram.dispatcher - INFO - Start polling
+2023-09-29 00:44:57 - aiogram.dispatcher - INFO - Run polling for bot @CatAPIXBot id=5811048601 - 'CatAPI'
+2023-09-29 00:45:02 - aiogram.event - INFO - Update id=331413236 is handled. Duration 187 ms by bot id=5811048601
+2023-09-29 00:45:05 - aiogram.event - INFO - Update id=331413237 is handled. Duration 77 ms by bot id=5811048601
+2023-09-29 00:45:37 - aiogram.event - INFO - Update id=331413238 is not handled. Duration 15 ms by bot id=5811048601
+2023-09-29 00:45:37 - aiogram.event - ERROR - Cause exception while process update id=331413238 by bot id=5811048601
+TypeError: 'Animation' object is not subscriptable
+Traceback (most recent call last):
+  File "C:\PR\catGen\.venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 308, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PR\catGen\.venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 157, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PR\catGen\.venv\Lib\site-packages\aiogram\dispatcher\middlewares\error.py", line 25, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PR\catGen\.venv\Lib\site-packages\aiogram\dispatcher\middlewares\user_context.py", line 27, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Xenocode\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 222, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "C:\PR\catGen\.venv\Lib\site-packages\aiogram\fsm\storage\memory.py", line 56, in lock
+    yield
+  File "C:\PR\catGen\.venv\Lib\site-packages\aiogram\fsm\middleware.py", line 41, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PR\catGen\.venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PR\catGen\.venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 42, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "C:\PR\catGen\.venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 275, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PR\catGen\.venv\Lib\site-packages\aiogram\dispatcher\router.py", line 116, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PR\catGen\.venv\Lib\site-packages\aiogram\dispatcher\router.py", line 111, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PR\catGen\.venv\Lib\site-packages\aiogram\dispatcher\router.py", line 144, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PR\catGen\.venv\Lib\site-packages\aiogram\dispatcher\router.py", line 116, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PR\catGen\.venv\Lib\site-packages\aiogram\dispatcher\router.py", line 111, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PR\catGen\.venv\Lib\site-packages\aiogram\dispatcher\router.py", line 136, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PR\catGen\.venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PR\catGen\.venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 42, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "C:\PR\catGen\app\handlers\handlers.py", line 29, in get_photo
+    await message.answer(message.animation[-1].file_id)
+                         ~~~~~~~~~~~~~~~~~^^^^
+TypeError: 'Animation' object is not subscriptable
+2023-09-29 00:45:42 - aiogram.dispatcher - INFO - Polling stopped
+2023-09-29 00:45:42 - aiogram.dispatcher - INFO - Polling stopped for bot @CatAPIXBot id=5811048601 - 'CatAPI'
+2023-09-29 00:45:42 - root - INFO - Bot stopped
+
+2023-09-29 00:45:56 - aiogram.dispatcher - INFO - Start polling
+2023-09-29 00:45:56 - aiogram.dispatcher - INFO - Run polling for bot @CatAPIXBot id=5811048601 - 'CatAPI'
+2023-09-29 00:46:02 - aiogram.event - INFO - Update id=331413239 is handled. Duration 172 ms by bot id=5811048601
+2023-09-29 00:48:14 - aiogram.dispatcher - INFO - Polling stopped
+2023-09-29 00:48:14 - aiogram.dispatcher - INFO - Polling stopped for bot @CatAPIXBot id=5811048601 - 'CatAPI'
+2023-09-29 00:48:14 - root - INFO - Bot stopped
+
+2023-09-29 00:48:18 - aiogram.dispatcher - INFO - Start polling
+2023-09-29 00:48:18 - aiogram.dispatcher - INFO - Run polling for bot @CatAPIXBot id=5811048601 - 'CatAPI'
+2023-09-29 00:48:22 - aiogram.event - INFO - Update id=331413240 is handled. Duration 312 ms by bot id=5811048601
+2023-09-29 00:48:39 - aiogram.dispatcher - INFO - Polling stopped
+2023-09-29 00:48:39 - aiogram.dispatcher - INFO - Polling stopped for bot @CatAPIXBot id=5811048601 - 'CatAPI'
+2023-09-29 00:48:39 - root - INFO - Bot stopped
+
+2023-09-29 00:52:57 - aiogram.dispatcher - INFO - Start polling
+2023-09-29 00:52:57 - aiogram.dispatcher - INFO - Run polling for bot @CatAPIXBot id=5811048601 - 'CatAPI'
+2023-09-29 00:53:05 - aiogram.event - INFO - Update id=331413241 is handled. Duration 328 ms by bot id=5811048601
+2023-09-29 00:53:06 - aiogram.event - INFO - Update id=331413242 is handled. Duration 77 ms by bot id=5811048601
+2023-09-29 00:53:34 - aiogram.dispatcher - INFO - Polling stopped
+2023-09-29 00:53:34 - aiogram.dispatcher - INFO - Polling stopped for bot @CatAPIXBot id=5811048601 - 'CatAPI'
+2023-09-29 00:53:34 - root - INFO - Bot stopped
+
+2023-09-29 00:55:15 - aiogram.dispatcher - INFO - Start polling
+2023-09-29 00:55:15 - aiogram.dispatcher - INFO - Run polling for bot @CatAPIXBot id=5811048601 - 'CatAPI'
+2023-09-29 00:55:19 - aiogram.event - INFO - Update id=331413243 is handled. Duration 204 ms by bot id=5811048601
+2023-09-29 00:55:58 - aiogram.dispatcher - INFO - Polling stopped
+2023-09-29 00:55:58 - aiogram.dispatcher - INFO - Polling stopped for bot @CatAPIXBot id=5811048601 - 'CatAPI'
+2023-09-29 00:55:58 - root - INFO - Bot stopped
+

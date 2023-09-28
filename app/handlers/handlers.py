@@ -13,19 +13,19 @@ router = Router()
 @router.message(CommandStart())
 async def cmd_start(message: Message):
     """Handle the /start command."""
-
     await message.answer(greetings(message))
 
 
 @router.message(Command(COMMANDS['MYID']))
 async def cmd_my_id_name(message: Message):
     """A function that handles the /my_id_name command."""
-    
     await message.answer(my_id_name(message))
-    #await message.answer_animation('https://media.giphy.com/media/hXvyi0RbHaLBLdCdL6/giphy.gif')
+
+@router.message(Command(COMMANDS['SECRET']))
+async def cmd_secret(message: Message):
+    await message.answer_animation(f"{MESSAGES['SECRET_GIF']}")
 
 @router.message()
 async def cmd_unclear(message: Message):
     """A function that handles unclear commands."""
-
     await message.answer(f"{MESSAGES['UNCLEAR']}")

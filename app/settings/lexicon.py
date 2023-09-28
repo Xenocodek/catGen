@@ -14,6 +14,7 @@ KEYBOARD = {
 COMMANDS = {
     'HELP': "help",
     'MYID': "my_id",
+    'SECRET': "secret",
 }
 
 MESSAGES = {
@@ -21,5 +22,6 @@ MESSAGES = {
     'EXCLAMATION_POINT': "!",
     'UNCLEAR': "Я тебя не понимаю...",
     'GET_USER_NAME': "Ваше имя: ",
-    'GET_USER_ID': "Ваш ID: "
+    'GET_USER_ID': "Ваш ID: ",
+    'SECRET_GIF': "CgACAgIAAxkBAAIB32UV9Bq-h_7DdNR19MkaiY75A7_ZAAKaNQACRamwSFQr5FWfN0tRMAQ",
 }

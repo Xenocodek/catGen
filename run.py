@@ -18,7 +18,7 @@ async def start():
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         datefmt='%Y-%m-%d %H:%M:%S',
         handlers=[
-            logging.FileHandler('BOTLOG.log', encoding='utf-8'),
+            logging.FileHandler('logging.log', encoding='utf-8'),
             logging.StreamHandler()
             ]
     )

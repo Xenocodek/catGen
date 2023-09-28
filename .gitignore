@@ -1,5 +1,5 @@
 .venv
 .env
-BOTLOG.log
+logging.log
 app/handlers/__pycache__
 app/settings/__pycache__
