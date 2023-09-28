@@ -23,6 +23,7 @@ async def start():
             ]
     )
 
+
     # Initialize a bot
     bot = conf.bot
 
