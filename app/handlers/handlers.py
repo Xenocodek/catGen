@@ -23,6 +23,7 @@ async def cmd_my_id_name(message: Message):
 
 @router.message(Command(COMMANDS['SECRET']))
 async def cmd_secret(message: Message):
+    """Sends a secret GIF animation as a response to the user's message."""
     await message.answer_animation(f"{MESSAGES['SECRET_GIF']}")
 
 @router.message()

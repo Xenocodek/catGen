@@ -18,6 +18,7 @@ async def start():
     conf = Configuration()
     bot = conf.bot
     
+    # Configure logging
     logging.basicConfig(
         level=conf.logging_level,
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
