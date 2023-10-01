@@ -4,7 +4,8 @@ import logging
 from aiogram import Dispatcher
 
 from app.handlers.handlers import router
-from app.settings.config import conf
+from app.settings.config import Configuration
+
 
 
 async def start():
@@ -13,6 +14,10 @@ async def start():
     include the router, start polling, and close the bot session.
     """
 
+    # Initialize a bot
+    conf = Configuration()
+    bot = conf.bot
+    
     logging.basicConfig(
         level=conf.logging_level,
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -22,10 +27,6 @@ async def start():
             logging.StreamHandler()
             ]
     )
-
-
-    # Initialize a bot
-    bot = conf.bot
 
     # Initialize a dispatcher
     dp = Dispatcher()

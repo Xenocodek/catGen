@@ -4,7 +4,6 @@ from aiogram import Bot
 from dataclasses import dataclass
 
 from dotenv import load_dotenv
-
 load_dotenv()
 
 @dataclass
@@ -24,5 +23,3 @@ class Configuration:
     botconfig = BotConfig()
 
     bot = Bot(token=botconfig.token, parse_mode='HTML')
-
-conf = Configuration()
