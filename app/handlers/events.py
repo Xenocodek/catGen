@@ -1,7 +1,9 @@
 from aiogram.utils.markdown import hbold
+from aiogram.types import Message
 
 from app.settings.lexicon import MESSAGES
-from aiogram.types import Message
+from app.ai_gen.text2image import TextToImageAPI
+
 
 def get_first_name(message: Message):
     """Returns the user's first name."""
@@ -29,3 +31,9 @@ def my_id_name(message: Message):
         f"{MESSAGES['GET_USER_ID']}{hbold(id)}"
     )
     return message
+
+def generate_image(prompt):
+    """Generates an image based on a given prompt using the TextToImageAPI class."""
+    imgGen = TextToImageAPI()
+    result = imgGen.generate_image(prompt)
+    return result

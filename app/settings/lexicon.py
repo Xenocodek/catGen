@@ -14,6 +14,7 @@ KEYBOARD = {
 COMMANDS = {
     'HELP': "help",
     'MYID': "my_id",
+    'GEN': "gen",
     'SECRET': "secret",
 }
 

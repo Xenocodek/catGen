@@ -3,3 +3,4 @@
 logging.log
 app/handlers/__pycache__
 app/settings/__pycache__
+app/ai_gen/__pycache__

@@ -21,6 +21,11 @@ async def cmd_my_id_name(message: Message):
     """A function that handles the /my_id_name command."""
     await message.answer(my_id_name(message))
 
+@router.message(Command(COMMANDS['GEN']))
+async def cmd_gen_image(message: Message):
+    """Generates and sends an image as a reply to the user when they send the '/gen' command."""
+    await message.answer_photo(generate_image())
+
 @router.message(Command(COMMANDS['SECRET']))
 async def cmd_secret(message: Message):
     """Sends a secret GIF animation as a response to the user's message."""
