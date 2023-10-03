@@ -15,7 +15,6 @@ async def cmd_start(message: Message):
     """Handle the /start command."""
     await message.answer(greetings(message))
 
-
 @router.message(Command(COMMANDS['MYID']))
 async def cmd_my_id_name(message: Message):
     """A function that handles the /my_id_name command."""

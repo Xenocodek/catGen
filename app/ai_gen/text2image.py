@@ -36,6 +36,12 @@ class TextToImageAPI:
             'Content-Type': 'application/json'
         }
 
-        response = requests.post(self.url, headers=headers, json=payload)
-        response_json = response.json()
-        return response_json['output'][0]
+        try:
+            response = requests.post(self.url, headers=headers, json=payload)
+            response.raise_for_status()
+            response_json = response.json()
+            return response_json['output'][0]
+        except requests.exceptions.RequestException as e:
+            # Обработка ошибки связи с сервером
+            ans = f"Произошла ошибка запроса {e}"
+            return ans

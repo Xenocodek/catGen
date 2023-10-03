@@ -32,8 +32,9 @@ def my_id_name(message: Message):
     )
     return message
 
-def generate_image(prompt):
+def generate_image():
     """Generates an image based on a given prompt using the TextToImageAPI class."""
     imgGen = TextToImageAPI()
+    prompt = "cat, black, "
     result = imgGen.generate_image(prompt)
     return result
