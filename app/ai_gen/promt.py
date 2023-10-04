@@ -1,6 +1,7 @@
 import random
 
 def promt_generator():
+    """Generate a random prompt about a cat."""
     CAT = 'cat'
     COLOR = ['black', 'white', 'red', 'gray', 'brown', 'striped', 'siamese', 'spotted']
     ACTION = ['jumping', 'running', 'playing', 'sleeping', 'seeking', 'climbing']
@@ -10,4 +11,4 @@ def promt_generator():
     random_action = random.choice(ACTION)
     random_char = random.choice(CHARACTERISTICS)
 
-    return f"{CAT}, {random_color}, {random_action}, {random_char}, "
+    return f"{CAT}, {random_color}, {random_action}, {random_char}"

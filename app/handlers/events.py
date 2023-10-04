@@ -35,6 +35,7 @@ def my_id_name(message: Message):
     return message
 
 def is_url(text):
+    """Check if a given text is a URL."""
     return re.match(r'https?://', text) is not None
 
 def generate_image(prompt):

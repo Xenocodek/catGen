@@ -19,11 +19,12 @@ COMMANDS = {
 }
 
 MESSAGES = {
-    'GREETINGS': "Привет, ",
+    'GREETINGS': emojize("👋 Привет, "),
     'EXCLAMATION_POINT': "!",
-    'UNCLEAR': "Я тебя не понимаю...",
+    'UNCLEAR': emojize("⁉ Я тебя не понимаю..."),
     'GET_USER_NAME': "Ваше имя: ",
     'GET_USER_ID': "Ваш ID: ",
-    'PROMT': "Промт картинки: ",
+    'PROMT': emojize("💬 Промт картинки: "),
+    'AWAITING': emojize("🔄 Подождите... Картинка генерируется."),
     'SECRET_GIF': "CgACAgIAAxkBAAIB32UV9Bq-h_7DdNR19MkaiY75A7_ZAAKaNQACRamwSFQr5FWfN0tRMAQ",
 }
