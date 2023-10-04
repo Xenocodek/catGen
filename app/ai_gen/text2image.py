@@ -40,7 +40,19 @@ class TextToImageAPI:
             response = requests.post(self.url, headers=headers, json=payload)
             response.raise_for_status()
             response_json = response.json()
-            return response_json['output'][0]
+            
+            if 'status' in response_json and response_json['status'] == 'error':
+                # Проверяем наличие поля 'message' и его содержание
+                if 'message' in response_json and 'monthly limit exceeded' in response_json['message'].lower():
+                    ans = "Превышен ежемесячный лимит."
+                else:
+                    # Обработка других ошибок, если необходимо
+                    ans = "Произошла ошибка: " + response_json.get('message', 'Не указано сообщение об ошибке')
+            else:
+                # Обработка успешного ответа
+                ans = response_json['output'][0]
+            return ans
+        
         except requests.exceptions.RequestException as e:
             # Обработка ошибки связи с сервером
             ans = f"Произошла ошибка запроса {e}"

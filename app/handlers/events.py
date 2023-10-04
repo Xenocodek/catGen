@@ -1,3 +1,5 @@
+import re
+
 from aiogram.utils.markdown import hbold
 from aiogram.types import Message
 
@@ -32,9 +34,11 @@ def my_id_name(message: Message):
     )
     return message
 
-def generate_image():
+def is_url(text):
+    return re.match(r'https?://', text) is not None
+
+def generate_image(prompt):
     """Generates an image based on a given prompt using the TextToImageAPI class."""
     imgGen = TextToImageAPI()
-    prompt = "cat, black, "
     result = imgGen.generate_image(prompt)
     return result

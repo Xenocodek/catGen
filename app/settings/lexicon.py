@@ -24,5 +24,6 @@ MESSAGES = {
     'UNCLEAR': "Я тебя не понимаю...",
     'GET_USER_NAME': "Ваше имя: ",
     'GET_USER_ID': "Ваш ID: ",
+    'PROMT': "Промт картинки: ",
     'SECRET_GIF': "CgACAgIAAxkBAAIB32UV9Bq-h_7DdNR19MkaiY75A7_ZAAKaNQACRamwSFQr5FWfN0tRMAQ",
 }
