@@ -3,11 +3,8 @@ from emoji import emojize
 
 #Control buttons
 KEYBOARD = {
-    'SETTINGS': emojize('⚙️ Настройки'),
-    '<<': emojize('⏪'),
-    '>>': emojize('⏩'),
-    'BACK_STEP': emojize('◀️'),
-    'NEXT_STEP': emojize('▶️'),
+    'MYID': "Узнать свой ID",
+    'GEN': "Сгенерировать картинку кота", 
 }
 
 #Names of commands
