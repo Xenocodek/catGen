@@ -13,8 +13,7 @@ from app.keyboards.inlinekb import (start_keyboard,
                                     after_gen_keyboard)
 
 from app.settings.config import Configuration
-conf = Configuration()
-bot = conf.bot
+bot = Configuration().bot
 
 
 def get_first_name(message: Message):

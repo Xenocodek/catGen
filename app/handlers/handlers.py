@@ -11,8 +11,7 @@ from app.keyboards.inlinekb import (start_keyboard,
                                     after_get_id_keyboard)
 from .events import *
 
-conf = Configuration()
-bot = conf.bot
+bot = Configuration().bot
 router = Router()
 
 
