@@ -7,7 +7,8 @@ from aiogram.fsm.state import State, StatesGroup
 from app.settings.config import Configuration
 from app.settings.lexicon import COMMANDS
 from app.ai_gen.promt import promt_generator
-from app.keyboards.inlinekb import start_keyboard
+from app.keyboards.inlinekb import (start_keyboard, 
+                                    after_get_id_keyboard)
 from .events import *
 
 conf = Configuration()
@@ -20,26 +21,18 @@ async def cmd_start(message: Message):
     """Handle the /start command."""
     await message.answer(greetings(message), reply_markup=start_keyboard)
 
+@router.message(Command(COMMANDS['MAIN']))
+async def cmd_start(message: Message):
+    await message.answer(greetings(message), reply_markup=start_keyboard)
+
 @router.message(Command(COMMANDS['MYID']))
 async def cmd_my_id_name(message: Message):
     """A function that handles the /my_id_name command."""
     await message.answer(my_id_name(message))
 
 @router.message(Command(COMMANDS['GEN']))
-async def cmd_gen_image(message: Message):
-    """Generates and sends an image based on a prompt."""
-    reply_message = await message.reply(f"{MESSAGES['AWAITING']}")
-
-    prompt = promt_generator()
-    api_requests = generate_image(prompt)
-
-    if is_url(api_requests):
-        caption = f"{MESSAGES['PROMT']}{hbold(prompt)}"
-        await message.answer_photo(photo=api_requests, caption=caption)
-    else:
-        await message.answer(api_requests)
-    
-    await bot.delete_message(message.from_user.id, reply_message.message_id)
+async def handle_gen_cmd(message: Message):
+    await cmd_gen_image(message)
 
 @router.message(Command(COMMANDS['SECRET']))
 async def cmd_secret(message: Message):
@@ -50,25 +43,24 @@ async def cmd_secret(message: Message):
 async def callback_my_id_name(callback: CallbackQuery):
     """A callback function that handles the callback query with data field equal to 'MYID'."""
     await callback.answer()
-    await callback.message.answer(my_id_name_from_callback(callback))
+    await bot.delete_message(callback.from_user.id, callback.message.message_id)
+    await callback.message.answer(my_id_name_from_callback(callback), reply_markup=after_get_id_keyboard)
 
 @router.callback_query(F.data == 'GEN')
-async def callback_gen_image(callback: CallbackQuery):
-    """Function to handle the callback query with data 'GEN' from the router."""
+async def handle_gen_callback(callback: CallbackQuery):
     await callback.answer("Запрос принят!")
+    await bot.delete_message(callback.from_user.id, callback.message.message_id)
+    await callback_gen_image(callback)
 
-    reply_message = await callback.message.answer(f"{MESSAGES['AWAITING']}")
+@router.callback_query(F.data == 'GEN_REPEAT')
+async def handle_gen_callback(callback: CallbackQuery):
+    await callback.answer("Запрос принят!")
+    await callback_gen_image_repeat(callback)
 
-    prompt = promt_generator()
-    api_requests = generate_image(prompt)
-
-    if is_url(api_requests):
-        caption = f"{MESSAGES['PROMT']}{hbold(prompt)}"
-        await callback.message.answer_photo(photo=api_requests, caption=caption)
-    else:
-        await callback.answer(api_requests)
-
-    await bot.delete_message(callback.from_user.id, reply_message.message_id)
+@router.callback_query(F.data == 'BACK_MAIN')
+async def handle_back_menu_callback(callback: CallbackQuery):
+    await callback.answer()
+    await callback_back_menu(callback)
 
 @router.message()
 async def cmd_unclear(message: Message):

@@ -23,5 +23,9 @@ def create_inline_kb(width, *args, **kwargs):
 
     return kb_builder.as_markup()
 
-
+# Create start keyboard with inline buttons for 'MYID' and 'GEN'
 start_keyboard = create_inline_kb(1, 'MYID', 'GEN')
+# Create keyboard after getting the ID with an inline button for 'BACK_MAIN'
+after_get_id_keyboard = create_inline_kb(1, 'BACK_MAIN')
+# Create keyboard after generating something with inline buttons for 'GEN_REPEAT' and 'BACK_MAIN'
+after_gen_keyboard = create_inline_kb(1, 'GEN_REPEAT', 'BACK_MAIN')

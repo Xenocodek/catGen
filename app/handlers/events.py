@@ -7,6 +7,16 @@ from app.settings.lexicon import MESSAGES
 from app.ai_gen.text2image import TextToImageAPI
 
 
+
+from app.ai_gen.promt import promt_generator
+from app.keyboards.inlinekb import (start_keyboard, 
+                                    after_gen_keyboard)
+
+from app.settings.config import Configuration
+conf = Configuration()
+bot = conf.bot
+
+
 def get_first_name(message: Message):
     """Returns the user's first name from a Message."""
     return message.from_user.first_name
@@ -53,3 +63,61 @@ def generate_image(prompt):
     imgGen = TextToImageAPI()
     result = imgGen.generate_image(prompt)
     return result
+
+async def cmd_gen_image(message: Message):
+    """Generates and sends an image based on a prompt."""
+    reply_message = await message.reply(f"{MESSAGES['AWAITING']}")
+
+    prompt = promt_generator()
+    api_requests = generate_image(prompt)
+
+    if is_url(api_requests):
+        caption = f"{MESSAGES['PROMT']}{hbold(prompt)}"
+        await message.answer_photo(photo=api_requests, caption=caption)
+    else:
+        await message.answer(api_requests)
+    
+    await bot.delete_message(message.from_user.id, reply_message.message_id)
+
+async def callback_gen_image(callback: CallbackQuery):
+    """Function to handle the callback query with data 'GEN' from the router."""
+    reply_message = await callback.message.answer(f"{MESSAGES['AWAITING']}")
+
+    prompt = promt_generator()
+    api_requests = generate_image(prompt)
+
+    if is_url(api_requests):
+        caption = f"{MESSAGES['PROMT']}{hbold(prompt)}"
+        await callback.message.answer_photo(photo=api_requests, caption=caption, reply_markup=after_gen_keyboard)
+    else:
+        await callback.answer(api_requests, reply_markup=after_gen_keyboard)
+
+    await bot.delete_message(callback.from_user.id, reply_message.message_id)
+
+async def callback_gen_image_repeat(callback: CallbackQuery):
+    """Function to handle the callback query with data 'GEN' from the router."""
+    chat_id = callback.message.chat.id
+    message_id = callback.message.message_id
+    
+    await bot.edit_message_reply_markup(chat_id=chat_id, message_id=message_id, reply_markup=None)
+    
+    reply_message = await callback.message.answer(f"{MESSAGES['AWAITING']}")
+
+    prompt = promt_generator()
+    api_requests = generate_image(prompt)
+
+    if is_url(api_requests):
+        caption = f"{MESSAGES['PROMT']}{hbold(prompt)}"
+        await callback.message.answer_photo(photo=api_requests, caption=caption, reply_markup=after_gen_keyboard)
+    else:
+        await callback.answer(api_requests, reply_markup=after_gen_keyboard)
+
+    await bot.delete_message(callback.from_user.id, reply_message.message_id)
+
+async def callback_back_menu(callback: CallbackQuery):
+    chat_id = callback.message.chat.id
+    message_id = callback.message.message_id
+   
+    await bot.edit_message_reply_markup(chat_id=chat_id, message_id=message_id, reply_markup=None)
+   
+    await callback.message.answer(f"{hbold(MESSAGES['MAIN_MENU'])}", reply_markup=start_keyboard)
