@@ -21,6 +21,7 @@ COMMANDS = {
 MESSAGES = {
     'GREETINGS': emojize("👋 Привет, "),
     'EXCLAMATION_POINT': "!",
+    'REQUEST': 'Запрос принят!',
     'MAIN_MENU': emojize("🏠 Главное меню"),
     'UNCLEAR': emojize("⁉ Я тебя не понимаю..."),
     'GET_USER_NAME': emojize("👤 Ваше имя: "),

@@ -19,11 +19,14 @@ router = Router()
 @router.message(CommandStart())
 async def cmd_start(message: Message):
     """Handle the /start command."""
-    await message.answer(greetings(message), reply_markup=start_keyboard)
+    response = greetings(message)
+    await message.answer(response, reply_markup=start_keyboard)
 
 @router.message(Command(COMMANDS['MAIN']))
 async def cmd_start(message: Message):
-    await message.answer(greetings(message), reply_markup=start_keyboard)
+    """Handle the /main command."""
+    response = greetings(message)
+    await message.answer(response, reply_markup=start_keyboard)
 
 @router.message(Command(COMMANDS['MYID']))
 async def cmd_my_id_name(message: Message):
@@ -32,6 +35,7 @@ async def cmd_my_id_name(message: Message):
 
 @router.message(Command(COMMANDS['GEN']))
 async def handle_gen_cmd(message: Message):
+    """Generate a image"""
     await cmd_gen_image(message)
 
 @router.message(Command(COMMANDS['SECRET']))
@@ -48,17 +52,20 @@ async def callback_my_id_name(callback: CallbackQuery):
 
 @router.callback_query(F.data == 'GEN')
 async def handle_gen_callback(callback: CallbackQuery):
-    await callback.answer("Запрос принят!")
+    """Handle the callback query for 'GEN' data."""
+    await callback.answer(MESSAGES['REQUEST'])
     await bot.delete_message(callback.from_user.id, callback.message.message_id)
     await callback_gen_image(callback)
 
 @router.callback_query(F.data == 'GEN_REPEAT')
 async def handle_gen_callback(callback: CallbackQuery):
-    await callback.answer("Запрос принят!")
+    """Handle the callback query for 'GEN_REPEAT' data."""
+    await callback.answer(MESSAGES['REQUEST'])
     await callback_gen_image_repeat(callback)
 
 @router.callback_query(F.data == 'BACK_MAIN')
 async def handle_back_menu_callback(callback: CallbackQuery):
+    """A function that handles the 'BACK_MAIN' callback query."""
     await callback.answer()
     await callback_back_menu(callback)
 
