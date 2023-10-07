@@ -5,6 +5,7 @@ from aiogram import Dispatcher
 
 from app.handlers.handlers import router
 from app.settings.config import Configuration
+from app.keyboards.main_menu import set_main_menu
 
 
 
@@ -34,6 +35,8 @@ async def start():
 
     # Include the router
     dp.include_router(router)
+
+    await set_main_menu(bot)
 
     try:
         # Start polling
