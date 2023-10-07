@@ -4,63 +4,47 @@ from aiogram.utils.markdown import hbold
 from aiogram.types import Message, CallbackQuery
 
 from app.settings.lexicon import MESSAGES
-from app.ai_gen.text2image import TextToImageAPI
-
-
+from .view import *
 
 from app.ai_gen.promt import promt_generator
-from app.keyboards.inlinekb import (start_keyboard, 
+from app.keyboards.inlinekb import (start_keyboard,
+                                    after_get_id_keyboard, 
                                     after_gen_keyboard)
 
 from app.settings.config import Configuration
 bot = Configuration().bot
 
 
-def get_first_name(message: Message):
-    """Returns the user's first name from a Message."""
-    return message.from_user.first_name
-
-def get_full_name(message: Message):
-    """Returns the user's full name from a Message."""
-    return message.from_user.full_name
-
-def get_id(message: Message):
-    """Returns the user's ID from a Message."""
-    return message.from_user.id
-
-def greetings(message: Message):
+async def greetings(message: Message):
     """Returns a formatted greeting message with the user's first name."""
-    name = get_first_name(message)
-    return f"{MESSAGES['GREETINGS']}{hbold(name)}{MESSAGES['EXCLAMATION_POINT']}"
+    user_name = message.from_user.first_name
+    response = f"{MESSAGES['GREETINGS']}{hbold(user_name)}{MESSAGES['EXCLAMATION_POINT']}"
+    await message.answer(response, reply_markup=start_keyboard)
 
-def my_id_name(message: Message):
+async def my_id_name(message: Message):
     """Construct a message string using the user's full name and ID from the given Message object."""
-    user_name = get_full_name(message)
-    user_id = get_id(message)
-    message = (
+    user_name = message.from_user.full_name
+    user_id = message.from_user.id
+    message_name_id = (
         f"{MESSAGES['GET_USER_NAME']}{hbold(user_name)}\n"
         f"{MESSAGES['GET_USER_ID']}{hbold(user_id)}"
     )
-    return message
+    await message.answer(message_name_id)
 
-def my_id_name_from_callback(callback: CallbackQuery):
+async def my_id_name_from_callback(callback: CallbackQuery):
     """Generates a message containing the user's name and ID from a callback query."""
+    await callback.answer()
+    
+    await bot.delete_message(callback.from_user.id, callback.message.message_id)
+
     user = callback.from_user
     user_name = user.full_name
     user_id = user.id
-    message = (
+    message_name_id = (
         f"{MESSAGES['GET_USER_NAME']}{hbold(user_name)}\n"
         f"{MESSAGES['GET_USER_ID']}{hbold(user_id)}"
     )
-    return message
-
-def is_url(text):
-    """Check if a given text is a URL."""
-    return re.match(r'https?://', text) is not None
-
-def generate_image(prompt):
-    """Generates an image based on a given prompt using the TextToImageAPI class."""
-    return TextToImageAPI().generate_image(prompt)
+    await callback.message.answer(message_name_id, reply_markup=after_get_id_keyboard)
 
 async def cmd_gen_image(message: Message):
     """Generates and sends an image based on a prompt."""
@@ -79,6 +63,10 @@ async def cmd_gen_image(message: Message):
 
 async def callback_gen_image(callback: CallbackQuery):
     """Function to handle the callback query with data 'GEN' from the router."""
+    await callback.answer(MESSAGES['REQUEST'])
+    
+    await bot.delete_message(callback.from_user.id, callback.message.message_id)
+    
     reply_message = await callback.message.answer(f"{MESSAGES['AWAITING']}")
     
     prompt = promt_generator()
@@ -96,6 +84,8 @@ async def callback_gen_image(callback: CallbackQuery):
 
 async def callback_gen_image_repeat(callback: CallbackQuery):
     """Function to handle the callback query with data 'GEN' from the router."""
+    await callback.answer(MESSAGES['REQUEST'])
+    
     chat_id = callback.message.chat.id
     message_id = callback.message.message_id
     
@@ -116,6 +106,8 @@ async def callback_gen_image_repeat(callback: CallbackQuery):
 
 async def callback_back_menu(callback: CallbackQuery):
     """Asynchronous function that handles the callback from the back menu button."""
+    await callback.answer()
+
     await bot.edit_message_reply_markup(
         chat_id=callback.message.chat.id,
         message_id=callback.message.message_id,
