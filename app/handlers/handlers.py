@@ -13,6 +13,7 @@ bot = Configuration().bot
 router = Router()
 
 
+"""Commands handlers."""
 @router.message(CommandStart())
 async def cmd_start(message: Message):
     """Handle the /start command."""
@@ -38,6 +39,8 @@ async def cmd_secret(message: Message):
     """Sends a secret GIF animation as a response to the user's message."""
     await message.answer_animation(f"{MESSAGES['SECRET_GIF']}")
 
+
+"""Callback handlers."""
 @router.callback_query(F.data == 'MYID')
 async def callback_my_id_name(callback: CallbackQuery):
     """A callback function that handles the callback query with data field equal to 'MYID'."""
@@ -58,6 +61,8 @@ async def handle_back_menu_callback(callback: CallbackQuery):
     """A function that handles the 'BACK_MAIN' callback query."""
     await callback_back_menu(callback)
 
+
+"""Other handlers."""
 @router.message()
 async def cmd_unclear(message: Message):
     """A function that handles unclear commands."""

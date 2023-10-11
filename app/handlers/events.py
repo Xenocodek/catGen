@@ -1,5 +1,3 @@
-import re
-
 from aiogram.utils.markdown import hbold
 from aiogram.types import Message, CallbackQuery
 
@@ -12,8 +10,8 @@ from app.keyboards.inlinekb import (start_keyboard,
                                     after_gen_keyboard)
 
 from app.settings.config import Configuration
-bot = Configuration().bot
 
+bot = Configuration().bot
 
 async def greetings(message: Message):
     """Returns a formatted greeting message with the user's first name."""
@@ -74,7 +72,8 @@ async def callback_gen_image(callback: CallbackQuery):
     
     if is_url(api_requests):
         caption = f"{MESSAGES['PROMT']}{hbold(prompt)}"
-        photo_message = await callback.message.answer_photo(photo=api_requests, caption=caption, reply_markup=after_gen_keyboard)
+        photo_message = await callback.message.answer_photo(photo=api_requests, caption=caption, 
+                                                            reply_markup=after_gen_keyboard)
     else:
         await callback.answer(api_requests, reply_markup=after_gen_keyboard)
         photo_message = None
