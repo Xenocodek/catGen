@@ -1,9 +1,6 @@
 from app.handlers.view import is_url
 from app.handlers.view import generate_image
 
-
-import pytest
-
 class TestIsUrl:
 
     # Valid URL starting with http://
