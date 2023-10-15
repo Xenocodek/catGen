@@ -4,14 +4,11 @@ from aiogram.filters import Command, CommandStart
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 
-from app.settings.config import Configuration
 from app.settings.lexicon import COMMANDS
 
 from .events import *
 
-bot = Configuration().bot
 router = Router()
-
 
 """Commands handlers."""
 @router.message(CommandStart())
