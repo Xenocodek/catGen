@@ -8,3 +8,4 @@ app/ai_gen/__pycache__
 app/keyboards/__pycache__
 tests/__pycache__
 tests/testing_view/__pycache__
+.pytest_cache
