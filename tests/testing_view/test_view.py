@@ -39,16 +39,33 @@ class TestIsUrl:
         assert is_url('This is not a URL') is False
 
 
-# class TestGenerateImage:
-#     # Generates an image with default parameters when optional parameters are not provided.
-#     def test_generate_image_with_default_parameters(self):
-#         # Arrange
-#         prompt = "Test prompt"
+class TestGenerateImage:
     
-#         # Act
-#         result = generate_image(prompt)
-    
-#         # Assert
-#         assert isinstance(result, str)
-#         assert result.startswith("https://")
-#         assert result.endswith(".png")
+    # Generates an image based on a given prompt
+    def test_generate_image_with_prompt(self):
+        prompt = "Test prompt"
+        result = generate_image(prompt)
+        assert result is not None
+
+    # Returns the generated image
+    def test_generate_image_returns_image(self):
+        prompt = "Test prompt"
+        result = generate_image(prompt)
+        assert isinstance(result, str)
+
+    # Handles monthly limit exceeded error
+    def test_generate_image_handles_monthly_limit_exceeded_error(self):
+        prompt = "Test prompt"
+        result = generate_image(prompt)
+        assert result == "Превышен ежемесячный лимит."
+
+        # Handles other API errors
+    def test_generate_image_handles_other_api_errors(self):
+        prompt = "Test prompt"
+        result = generate_image(prompt)
+        assert result.startswith("Произошла ошибка:")
+
+    # Handles missing prompt parameter
+    def test_generate_image_handles_missing_prompt_parameter(self):
+        result = generate_image(None)
+        assert result is None
