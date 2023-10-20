@@ -29,4 +29,5 @@ MESSAGES = {
     'PROMT': emojize("🐾 Промт картинки: "),
     'AWAITING': emojize("🔄 Подождите... Картинка генерируется."),
     'SECRET_GIF': "CgACAgIAAxkBAAIB32UV9Bq-h_7DdNR19MkaiY75A7_ZAAKaNQACRamwSFQr5FWfN0tRMAQ",
+    'TEST': 'test'
 }
